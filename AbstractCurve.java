@@ -1,10 +1,17 @@
+/*
+ * @authors Braden Samson, Emma Holt, Ian McGinness
+ * Date: September 2024
+ * Description: An Abstract Curve that can be extended to create
+ * curves such as a Producer Curve or a Consumer Curve.
+ */
+
 package phaseTwo;
 
 import java.util.ArrayList;
 
 public abstract class AbstractCurve {
 	
-	private ArrayList<Point> myCurve;
+	private final ArrayList<Point> myCurve;
 	
 	/*
 	 * Creates a curve with a size set by "n" and with a
@@ -20,7 +27,7 @@ public abstract class AbstractCurve {
 		
 		myCurve.add(startPoint);
 		
-		for (int i = 1; i < n; i++) {
+		for (int i = 1; i <= n; i++) {
 			myCurve.add(new Point((dX * i) + startPoint.getQuantity(), (dY * i) + startPoint.getPrice()));
 		}
 	}
@@ -74,7 +81,7 @@ public abstract class AbstractCurve {
 		int index = -1;
 		int low = 0;
 		int mid;
-		int high = myCurve.size();
+		int high = myCurve.size() - 1;
 		
 		while (low <= high) {
 			mid = low + (high - low) / 2;
@@ -128,6 +135,7 @@ public abstract class AbstractCurve {
 	/*
 	 * Returns a string with all the points values in an "ordered pair"
 	 */
+	@Override
 	public String toString() {
 		String str = "(";
 		
