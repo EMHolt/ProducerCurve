@@ -27,7 +27,7 @@ public abstract class AbstractCurve {
 		
 		myCurve.add(startPoint);
 		
-		for (int i = 1; i <= n; i++) {
+		for (int i = 1; i < n; i++) {
 			myCurve.add(new Point((dX * i) + startPoint.getQuantity(), (dY * i) + startPoint.getPrice()));
 		}
 	}
@@ -36,11 +36,7 @@ public abstract class AbstractCurve {
 	 * Creates a basic linear curve with a slope of one
 	 */
 	public AbstractCurve() {
-		myCurve = new ArrayList<Point>();
-
-		for (int i = 1; i <= 10; i++) {
-            myCurve.add(new Point(i, (double) i));
-		}
+		this(new Point(1, 1.0), 10, 1, 1.0);
 	}
 
 	/*
@@ -139,8 +135,12 @@ public abstract class AbstractCurve {
 	public String toString() {
 		String str = "(";
 		
-		for (Point p : myCurve) {
-			str = str.concat(p.toString() + " ");
+		for (int i = 0; i < myCurve.size(); i++) {
+			str = str.concat(myCurve.get(i).toString());
+
+			if (i != myCurve.size() - 1) {
+				str = str.concat(", ");
+			}
 		}
 		
 		return str.concat(")");
