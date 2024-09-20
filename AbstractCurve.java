@@ -149,7 +149,7 @@ public abstract class AbstractCurve {
 	 * @param p
 	 * @return
 	 */
-	public boolean isOnCurve(Point p)
+	public boolean contains(Point p)
 	{
 		int index = searchIndex(p);
 		if (index < 0) return false;
